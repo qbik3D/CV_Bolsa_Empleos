@@ -96,15 +96,15 @@ export default function PersonalInfoForm({ data, onChange }) {
             )}
             <button
               type="button"
-              onClick={() => handleFieldChange('showPhoto', !data.showPhoto)}
+              onClick={() => handleFieldChange('showPhoto', data.showPhoto === false ? true : false)}
               className={`px-2.5 py-1 text-xs font-medium border rounded-lg transition flex items-center space-x-1 ${
-                data.showPhoto 
-                  ? 'bg-blue-50 border-blue-200 text-blue-700' 
-                  : 'bg-slate-100 border-slate-300 text-slate-500'
+                data.showPhoto !== false 
+                  ? 'bg-emerald-50 border-emerald-300 text-emerald-800' 
+                  : 'bg-slate-100 border-slate-300 text-slate-600'
               }`}
             >
-              {data.showPhoto ? <Eye className="w-3 h-3" /> : <EyeOff className="w-3 h-3" />}
-              <span>{data.showPhoto ? 'Visible en CV' : 'Oculta en CV'}</span>
+              {data.showPhoto !== false ? <Eye className="w-3 h-3 text-emerald-600" /> : <EyeOff className="w-3 h-3 text-slate-400" />}
+              <span>{data.showPhoto !== false ? 'Foto visible en CV' : 'Foto oculta en CV'}</span>
             </button>
           </div>
         </div>

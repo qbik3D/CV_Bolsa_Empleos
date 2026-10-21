@@ -110,11 +110,11 @@ export const sampleCVData = {
     }
   ],
   customization: {
-    themeColor: "navy", // 'navy', 'unlam-blue', 'slate', 'burgundy', 'emerald'
-    fontFamily: "sans", // 'sans', 'inter', 'serif'
+    themeColor: "lfu",
+    fontFamily: "sans",
     showPhoto: true,
     showCentroBadge: true,
-    customLogoUrl: "", // For future logo upload / injection
+    customLogoUrl: "",
   }
 };
 
@@ -143,7 +143,7 @@ export const emptyCVData = {
   languages: [],
   projects: [],
   customization: {
-    themeColor: "navy",
+    themeColor: "lfu",
     fontFamily: "sans",
     showPhoto: true,
     showCentroBadge: true,

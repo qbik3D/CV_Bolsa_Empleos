@@ -67,7 +67,7 @@ export default function Header({
               onClick={() => setActiveTab('form')}
               className={`flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium rounded-md transition-all ${
                 activeTab === 'form'
-                  ? 'bg-blue-600 text-white shadow'
+                  ? 'bg-emerald-700 text-white shadow'
                   : 'text-slate-300 hover:text-white'
               }`}
             >
@@ -78,7 +78,7 @@ export default function Header({
               onClick={() => setActiveTab('preview')}
               className={`flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium rounded-md transition-all ${
                 activeTab === 'preview'
-                  ? 'bg-blue-600 text-white shadow'
+                  ? 'bg-emerald-700 text-white shadow'
                   : 'text-slate-300 hover:text-white'
               }`}
             >
@@ -170,7 +170,7 @@ export default function Header({
             <button
               onClick={onDownloadPDF}
               disabled={isGeneratingPDF}
-              className="flex items-center space-x-2 px-4 py-2 text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 rounded-lg shadow-md hover:shadow-lg transition-all transform active:scale-95 disabled:opacity-50"
+              className="flex items-center space-x-2 px-4 py-2 text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-emerald-700 to-green-600 hover:from-emerald-600 hover:to-green-500 rounded-lg shadow-md hover:shadow-lg transition-all transform active:scale-95 disabled:opacity-50"
             >
               <Download className={`w-4 h-4 ${isGeneratingPDF ? 'animate-bounce' : ''}`} />
               <span>{isGeneratingPDF ? 'Generando PDF...' : 'Descargar PDF'}</span>

@@ -7,14 +7,22 @@ import { sampleCVData, emptyCVData } from './constants/defaultData';
 import { downloadPDF, printPDF } from './utils/pdfExport';
 import { Download, Eye, FileText, CheckCircle2 } from 'lucide-react';
 
-const STORAGE_KEY = 'unlam_cv_builder_v1';
+const STORAGE_KEY = 'unlam_cv_builder_v3';
 
 export default function App() {
   const [cvData, setCvData] = useState(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
-        return JSON.parse(saved);
+        const parsed = JSON.parse(saved);
+        // Ensure default theme is LFU Green
+        if (!parsed.customization?.themeColor || parsed.customization?.themeColor === 'navy') {
+          parsed.customization = {
+            ...parsed.customization,
+            themeColor: 'lfu'
+          };
+        }
+        return parsed;
       }
     } catch (e) {
       console.error('Error loading saved CV from localStorage:', e);
@@ -91,36 +99,40 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-100">
-      {/* Top Header */}
-      <Header
-        onLoadSample={handleLoadSample}
-        onReset={handleReset}
-        onDownloadPDF={handleDownloadPDF}
-        onPrint={handlePrint}
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        onExportJSON={handleExportJSON}
-        onImportJSON={handleImportJSON}
-        isGeneratingPDF={isGeneratingPDF}
-      />
+    <div className="min-h-screen flex flex-col bg-slate-100 print:bg-white">
+      {/* Top Header (Hidden on print) */}
+      <div className="no-print print:hidden">
+        <Header
+          onLoadSample={handleLoadSample}
+          onReset={handleReset}
+          onDownloadPDF={handleDownloadPDF}
+          onPrint={handlePrint}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          onExportJSON={handleExportJSON}
+          onImportJSON={handleImportJSON}
+          isGeneratingPDF={isGeneratingPDF}
+        />
+      </div>
 
-      {/* Expo Empleo Banner with tips */}
-      <ExpoBanner />
+      {/* Expo Empleo Banner with tips (Hidden on print) */}
+      <div className="no-print print:hidden">
+        <ExpoBanner />
+      </div>
 
       {/* Main Workspace */}
-      <main className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      <main className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 print:p-0 print:m-0 print:max-w-none">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start print:block print:p-0">
           
-          {/* Left: Form Editor (Visible always on lg+, controlled by activeTab on mobile) */}
-          <div className={`lg:col-span-5 ${activeTab === 'form' ? 'block' : 'hidden lg:block'}`}>
+          {/* Left: Form Editor (Strictly hidden during print/PDF export) */}
+          <div className={`lg:col-span-5 no-print print:hidden form-editor-container ${activeTab === 'form' ? 'block' : 'hidden lg:block'}`}>
             <div className="flex items-center justify-between mb-3 px-1">
               <h2 className="text-sm font-bold text-slate-800 flex items-center space-x-1.5">
-                <FileText className="w-4 h-4 text-blue-600" />
+                <FileText className="w-4 h-4 text-emerald-700" />
                 <span>Completar Información</span>
               </h2>
               <span className="text-xs text-slate-400 flex items-center space-x-1">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                 <span>Auto-guardado activo</span>
               </span>
             </div>
@@ -131,8 +143,8 @@ export default function App() {
             />
           </div>
 
-          {/* Right: Live A4 Preview (Visible always on lg+, controlled by activeTab on mobile) */}
-          <div className={`lg:col-span-7 sticky top-20 ${activeTab === 'preview' ? 'block' : 'hidden lg:block'}`}>
+          {/* Right: Live A4 Preview (Sole element visible during print) */}
+          <div className={`lg:col-span-7 sticky top-20 print:static print:w-full print:p-0 print:m-0 preview-container ${activeTab === 'preview' ? 'block' : 'hidden lg:block'}`}>
             <PreviewPanel
               cvData={cvData}
               onDownloadPDF={handleDownloadPDF}
@@ -143,12 +155,12 @@ export default function App() {
         </div>
       </main>
 
-      {/* Floating Action Button for Mobile */}
-      <div className="fixed bottom-4 right-4 lg:hidden z-50 flex flex-col space-y-2">
+      {/* Floating Action Button for Mobile (Hidden on print) */}
+      <div className="fixed bottom-4 right-4 lg:hidden z-50 flex flex-col space-y-2 no-print print:hidden">
         <button
           onClick={handleDownloadPDF}
           disabled={isGeneratingPDF}
-          className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-5 rounded-full shadow-2xl transition active:scale-95"
+          className="flex items-center space-x-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-3 px-5 rounded-full shadow-2xl transition active:scale-95"
         >
           <Download className="w-5 h-5" />
           <span>{isGeneratingPDF ? 'Generando...' : 'Descargar PDF'}</span>

@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { ZoomIn, ZoomOut, Maximize2, Download, Printer, Check } from 'lucide-react';
+import React, { useState } from 'react';
+import { ZoomIn, ZoomOut, Maximize2 } from 'lucide-react';
 import CVDocument from './CVDocument';
 
 export default function PreviewPanel({ 
@@ -15,9 +15,9 @@ export default function PreviewPanel({
   const handleResetZoom = () => setZoom(0.85);
 
   return (
-    <div className="flex flex-col h-full">
-      {/* Top toolbar inside preview */}
-      <div className="bg-white px-4 py-2.5 rounded-t-xl border border-b-0 border-slate-200 flex items-center justify-between shadow-2xs">
+    <div className="flex flex-col h-full print:block print:p-0 print:m-0">
+      {/* Top toolbar inside preview (strictly hidden when printing) */}
+      <div className="no-print print:hidden preview-toolbar bg-white px-4 py-2.5 rounded-t-xl border border-b-0 border-slate-200 flex items-center justify-between shadow-2xs">
         <div className="flex items-center space-x-2">
           <span className="text-xs font-bold text-slate-700">Vista Previa (Formato A4)</span>
           <span className="hidden sm:inline-block text-[11px] text-slate-400">• Modelo Oficial Expo Empleo</span>
@@ -55,9 +55,10 @@ export default function PreviewPanel({
       {/* Scrollable Document Area */}
       <div 
         id="cv-preview-wrapper"
-        className="flex-1 bg-slate-300/80 p-4 sm:p-6 overflow-auto rounded-b-xl border border-slate-200 flex justify-center items-start shadow-inner min-h-[500px]"
+        className="flex-1 bg-slate-300/80 p-4 sm:p-6 overflow-auto rounded-b-xl border border-slate-200 flex justify-center items-start shadow-inner min-h-[500px] print:p-0 print:m-0 print:bg-white print:border-none print:shadow-none print:overflow-visible print:block"
       >
         <div 
+          className="print:transform-none print:m-0 print:p-0"
           style={{
             transform: `scale(${zoom})`,
             transformOrigin: 'top center',

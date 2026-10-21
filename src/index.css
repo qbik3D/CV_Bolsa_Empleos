@@ -6,55 +6,102 @@
   }
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: #f3f4f6;
     color: #1f2937;
   }
 }
 
-/* Print Styles for Perfect A4 Export */
+/* ========================================================== */
+/* PRINT STYLES - STRICT 1-PAGE A4 OUTPUT                     */
+/* ========================================================== */
 @media print {
   @page {
     size: A4 portrait;
-    margin: 0;
+    margin: 0mm !important;
+  }
+
+  *, *:before, *:after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
   }
 
   html, body {
     margin: 0 !important;
     padding: 0 !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    max-height: 297mm !important;
+    overflow: hidden !important;
     background: #ffffff !important;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
   }
 
-  /* Hide everything except the CV container */
-  .no-print, header, aside, .ui-panel, .floating-actions, button, nav, .tips-banner {
+  /* Hide absolutely everything non-CV */
+  header, 
+  nav, 
+  footer:not(#cv-document footer),
+  .no-print, 
+  .form-editor-container, 
+  .preview-toolbar, 
+  .floating-actions, 
+  #banner-expo,
+  button,
+  input,
+  textarea {
     display: none !important;
+  }
+
+  /* Reset wrappers and layout grids */
+  #root, 
+  main, 
+  .main-grid,
+  .preview-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    display: block !important;
   }
 
   #cv-preview-wrapper {
     padding: 0 !important;
     margin: 0 !important;
-    background: transparent !important;
+    background: #ffffff !important;
     box-shadow: none !important;
+    border: none !important;
     display: block !important;
+    overflow: visible !important;
+    height: auto !important;
+    min-height: 297mm !important;
   }
 
+  #cv-preview-wrapper > div {
+    transform: none !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+
+  /* Perfect A4 single page bounding */
   #cv-document {
     box-shadow: none !important;
     border: none !important;
-    margin: 0 !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
     width: 210mm !important;
+    height: 297mm !important;
     min-height: 297mm !important;
+    max-height: 297mm !important;
     border-radius: 0 !important;
-  }
-
-  .cv-page-break {
-    page-break-before: always;
-  }
-
-  .break-inside-avoid {
-    break-inside: avoid;
-    page-break-inside: avoid;
+    overflow: hidden !important;
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+    page-break-before: avoid !important;
+    break-after: avoid !important;
+    break-inside: avoid !important;
+    break-before: avoid !important;
   }
 }

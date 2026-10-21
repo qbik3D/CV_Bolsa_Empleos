@@ -1,9 +1,10 @@
-import html2canvas from 'html2canvas';
+import html2canvas from 'html2canvas-pro';
 import { jsPDF } from 'jspdf';
 
 /**
- * Direct file download using html2canvas + jsPDF
- * Renders exact 1-page A4 and triggers browser file download directly
+ * Direct file download using html2canvas-pro + jsPDF
+ * Renders exact 1-page A4 and triggers browser file download directly.
+ * Fully supports modern CSS (oklch, color-mix, lab, etc.)
  */
 export async function downloadPDF(elementId = 'cv-document', filename = 'CV_Expo_Empleo.pdf') {
   const element = document.getElementById(elementId);
@@ -22,14 +23,55 @@ export async function downloadPDF(elementId = 'cv-document', filename = 'CV_Expo
     zoomContainer.style.marginBottom = '0';
   }
 
+  // Helper canvas to convert any computed modern color (e.g. oklch) to standard rgb
+  const helperCanvas = document.createElement('canvas');
+  const helperCtx = helperCanvas.getContext('2d');
+
+  function safeColor(str) {
+    if (!str || typeof str !== 'string' || !str.includes('oklch')) return str;
+    try {
+      helperCtx.fillStyle = '#000000';
+      helperCtx.fillStyle = str;
+      return helperCtx.fillStyle;
+    } catch (e) {
+      return '#000000';
+    }
+  }
+
   try {
     const canvas = await html2canvas(element, {
-      scale: 2, // High resolution (approx 300 DPI)
+      scale: 2, // High resolution (300 DPI)
       useCORS: true,
       logging: false,
       backgroundColor: '#ffffff',
       windowWidth: 794,
       windowHeight: 1123,
+      onclone: (clonedDoc, clonedEl) => {
+        // Sanitize any computed oklch colors in the cloned document
+        const allNodes = [clonedEl, ...clonedEl.querySelectorAll('*')];
+        const colorProps = [
+          'color', 
+          'backgroundColor', 
+          'borderColor', 
+          'borderTopColor', 
+          'borderBottomColor', 
+          'borderLeftColor', 
+          'borderRightColor', 
+          'outlineColor'
+        ];
+
+        allNodes.forEach((node) => {
+          if (node.nodeType === 1) {
+            const comp = window.getComputedStyle(node);
+            colorProps.forEach((prop) => {
+              const val = comp[prop];
+              if (val && typeof val === 'string' && val.includes('oklch')) {
+                node.style[prop] = safeColor(val);
+              }
+            });
+          }
+        });
+      }
     });
 
     const imgData = canvas.toDataURL('image/jpeg', 0.98);

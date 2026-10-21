@@ -1,80 +1,65 @@
-import html2pdf from 'html2pdf.js';
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 
 /**
- * Direct file download using html2pdf without triggering print dialog
+ * Direct file download using html2canvas + jsPDF
+ * Renders exact 1-page A4 and triggers browser file download directly
  */
 export async function downloadPDF(elementId = 'cv-document', filename = 'CV_Expo_Empleo.pdf') {
   const element = document.getElementById(elementId);
   if (!element) {
-    console.error('CV Element not found for PDF export');
+    console.error('CV element not found:', elementId);
     return;
   }
 
-  // Resolve html2pdf function reliably in ESM
-  const html2pdfModule = typeof html2pdf === 'function' ? html2pdf : (html2pdf?.default || window.html2pdf);
-  if (!html2pdfModule) {
-    console.error('html2pdf module not found');
-    return;
+  // Temporarily reset preview zoom container so html2canvas captures 100% full scale
+  const zoomContainer = document.getElementById('cv-zoom-container');
+  const originalTransform = zoomContainer ? zoomContainer.style.transform : '';
+  const originalMargin = zoomContainer ? zoomContainer.style.marginBottom : '';
+
+  if (zoomContainer) {
+    zoomContainer.style.transform = 'none';
+    zoomContainer.style.marginBottom = '0';
   }
-
-  // Create isolated off-screen sandbox to avoid zoom transform interference
-  const sandbox = document.createElement('div');
-  sandbox.style.position = 'fixed';
-  sandbox.style.left = '0';
-  sandbox.style.top = '-20000px';
-  sandbox.style.width = '210mm';
-  sandbox.style.height = '297mm';
-  sandbox.style.zIndex = '-99999';
-  sandbox.style.background = '#ffffff';
-
-  const clone = element.cloneNode(true);
-  clone.id = 'cv-export-clone';
-  clone.style.transform = 'none';
-  clone.style.margin = '0';
-  clone.style.width = '210mm';
-  clone.style.height = '297mm';
-  clone.style.minHeight = '297mm';
-  clone.style.maxHeight = '297mm';
-  clone.style.boxShadow = 'none';
-  clone.style.border = 'none';
-
-  sandbox.appendChild(clone);
-  document.body.appendChild(sandbox);
-
-  const opt = {
-    margin: 0,
-    filename: filename,
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: {
-      scale: 2,
-      useCORS: true,
-      logging: false,
-      scrollY: 0,
-      scrollX: 0,
-      windowWidth: 794,
-      windowHeight: 1123,
-    },
-    jsPDF: {
-      unit: 'mm',
-      format: 'a4',
-      orientation: 'portrait'
-    }
-  };
 
   try {
-    await html2pdfModule().set(opt).from(clone).save();
+    const canvas = await html2canvas(element, {
+      scale: 2, // High resolution (approx 300 DPI)
+      useCORS: true,
+      logging: false,
+      backgroundColor: '#ffffff',
+      windowWidth: 794,
+      windowHeight: 1123,
+    });
+
+    const imgData = canvas.toDataURL('image/jpeg', 0.98);
+
+    const pdf = new jsPDF({
+      orientation: 'portrait',
+      unit: 'mm',
+      format: 'a4',
+      compress: true
+    });
+
+    // Add image fitting strictly into 1 page A4 (210mm x 297mm)
+    pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297, undefined, 'FAST');
+
+    // Trigger direct download of the PDF file
+    pdf.save(filename);
   } catch (error) {
-    console.error('Error during direct PDF generation:', error);
-    alert('Hubo un error al generar el PDF. Por favor intentá nuevamente.');
+    console.error('Error generating PDF:', error);
+    alert('Ocurrió un error al descargar el PDF: ' + (error.message || error));
   } finally {
-    if (document.body.contains(sandbox)) {
-      document.body.removeChild(sandbox);
+    // Restore preview zoom transform
+    if (zoomContainer) {
+      zoomContainer.style.transform = originalTransform;
+      zoomContainer.style.marginBottom = originalMargin;
     }
   }
 }
 
 /**
- * Optional native print dialog
+ * Native vector print dialog
  */
 export function printPDF() {
   window.print();

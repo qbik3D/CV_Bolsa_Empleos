@@ -58,6 +58,7 @@ export default function PreviewPanel({
         className="flex-1 bg-slate-300/80 p-4 sm:p-6 overflow-auto rounded-b-xl border border-slate-200 flex justify-center items-start shadow-inner min-h-[500px] print:p-0 print:m-0 print:bg-white print:border-none print:shadow-none print:overflow-visible print:block"
       >
         <div 
+          id="cv-zoom-container"
           className="print:transform-none print:m-0 print:p-0"
           style={{
             transform: `scale(${zoom})`,

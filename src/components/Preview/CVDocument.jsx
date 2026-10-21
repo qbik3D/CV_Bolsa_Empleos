@@ -63,16 +63,16 @@ export default function CVDocument({ data }) {
           }}
         >
           <div className="space-y-4">
-            {/* Sello / Logo del Centro de Estudiantes (Arriba de la foto y más grande) */}
+            {/* Sello / Logo del Centro de Estudiantes (Arriba de la foto - Tamaño Ampliado) */}
             {showCentroBadge && (
               <div 
-                className="p-2.5 rounded-xl border text-center transition bg-white shadow-2xs"
+                className="p-3 rounded-2xl border text-center transition bg-white shadow-xs"
                 style={{ borderColor: theme.sidebarBorder }}
               >
                 <img 
                   src={customLogoUrl || "./logo-centro.png"} 
                   alt="Logo Centro de Estudiantes LFU" 
-                  className="max-h-20 w-auto mx-auto object-contain drop-shadow-xs"
+                  className="max-h-36 w-full max-w-[170px] mx-auto object-contain drop-shadow-xs"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
                     if (e.currentTarget.nextElementSibling) {

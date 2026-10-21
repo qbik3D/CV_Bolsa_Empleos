@@ -8,7 +8,7 @@ export default function ExpoBanner() {
   if (dismissed) return null;
 
   return (
-    <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white px-4 py-3 sm:px-6 lg:px-8 shadow-inner border-b border-blue-800/40">
+    <div className="bg-gradient-to-r from-emerald-950 via-slate-900 to-slate-950 text-white px-3 py-2 sm:px-6 sm:py-3 shadow-inner border-b border-emerald-900/40">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-xs sm:text-sm">
         <div className="flex items-start sm:items-center space-x-3">
           <div className="p-1.5 bg-blue-500/20 text-blue-300 rounded-lg shrink-0 mt-0.5 sm:mt-0">

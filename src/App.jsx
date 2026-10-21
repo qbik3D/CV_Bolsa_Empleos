@@ -121,7 +121,7 @@ export default function App() {
       </div>
 
       {/* Main Workspace */}
-      <main className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 print:p-0 print:m-0 print:max-w-none">
+      <main className="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-6 lg:p-8 pb-28 lg:pb-8 print:p-0 print:m-0 print:max-w-none">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start print:block print:p-0">
           
           {/* Left: Form Editor (Strictly hidden during print/PDF export) */}

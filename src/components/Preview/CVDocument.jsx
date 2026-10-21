@@ -14,7 +14,7 @@ import {
   ExternalLink,
   Shield
 } from 'lucide-react';
-import { LinkedinIcon, GithubIcon } from '../Icons';
+import { LinkedinIcon } from '../Icons';
 import { COLOR_THEMES } from '../../constants/defaultData';
 
 export default function CVDocument({ data }) {
@@ -63,38 +63,16 @@ export default function CVDocument({ data }) {
           }}
         >
           <div className="space-y-4">
-            {/* Foto de Perfil */}
-            {showPhoto && (
-              <div className="flex flex-col items-center text-center">
-                <div 
-                  className="w-24 h-24 rounded-full overflow-hidden border-3 shadow-sm bg-white flex items-center justify-center shrink-0"
-                  style={{ borderColor: theme.primary }}
-                >
-                  {personalInfo.photoUrl ? (
-                    <img
-                      src={personalInfo.photoUrl}
-                      alt={personalInfo.fullName || "Foto de perfil"}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-slate-100 text-slate-400">
-                      <User className="w-12 h-12" />
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-
-            {/* Sello / Logo del Centro de Estudiantes */}
+            {/* Sello / Logo del Centro de Estudiantes (Arriba de la foto y más grande) */}
             {showCentroBadge && (
               <div 
-                className="p-2 rounded-xl border text-center transition bg-white shadow-2xs"
+                className="p-2.5 rounded-xl border text-center transition bg-white shadow-2xs"
                 style={{ borderColor: theme.sidebarBorder }}
               >
                 <img 
                   src={customLogoUrl || "./logo-centro.png"} 
                   alt="Logo Centro de Estudiantes LFU" 
-                  className="max-h-14 max-w-full mx-auto object-contain drop-shadow-2xs"
+                  className="max-h-20 w-auto mx-auto object-contain drop-shadow-xs"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
                     if (e.currentTarget.nextElementSibling) {
@@ -117,6 +95,28 @@ export default function CVDocument({ data }) {
                       EXPO EMPLEO
                     </p>
                   </div>
+                </div>
+              </div>
+            )}
+
+            {/* Foto de Perfil (Debajo del logo) */}
+            {showPhoto && (
+              <div className="flex flex-col items-center text-center">
+                <div 
+                  className="w-24 h-24 rounded-full overflow-hidden border-2 shadow-xs bg-white flex items-center justify-center shrink-0"
+                  style={{ borderColor: theme.primary }}
+                >
+                  {personalInfo.photoUrl ? (
+                    <img
+                      src={personalInfo.photoUrl}
+                      alt={personalInfo.fullName || "Foto de perfil"}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-slate-100 text-slate-400">
+                      <User className="w-12 h-12" />
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -161,7 +161,7 @@ export default function CVDocument({ data }) {
 
                 {personalInfo.github && (
                   <div className="flex items-center space-x-1.5 break-all">
-                    <GithubIcon className="w-3 h-3 shrink-0" style={{ color: theme.primary }} />
+                    <Globe className="w-3 h-3 shrink-0" style={{ color: theme.primary }} />
                     <span>{personalInfo.github}</span>
                   </div>
                 )}
@@ -252,7 +252,7 @@ export default function CVDocument({ data }) {
         {/* ======================================================== */}
         {/* RIGHT MAIN COLUMN (Columna Principal)                    */}
         {/* ======================================================== */}
-        <main className="flex-1 p-6 flex flex-col justify-between h-full overflow-hidden">
+        <main className="flex-1 pl-10 pr-6 py-6 flex flex-col justify-between h-full overflow-hidden">
           <div className="space-y-3.5">
             {/* Header del Postulante */}
             <div className="border-b pb-2.5" style={{ borderColor: '#e2e8f0' }}>

@@ -156,24 +156,14 @@ export default function Header({
               )}
             </div>
 
-            {/* Print button */}
-            <button
-              onClick={onPrint}
-              className="flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium text-slate-200 bg-slate-800 hover:bg-slate-700 rounded-lg border border-slate-700 transition"
-              title="Abrir diálogo de impresión para máxima nitidez vectorial"
-            >
-              <Printer className="w-3.5 h-3.5 text-blue-300" />
-              <span className="hidden md:inline">Imprimir</span>
-            </button>
-
-            {/* Main Download PDF CTA */}
+            {/* Main Download PDF CTA (Direct file download) */}
             <button
               onClick={onDownloadPDF}
               disabled={isGeneratingPDF}
               className="flex items-center space-x-2 px-4 py-2 text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-emerald-700 to-green-600 hover:from-emerald-600 hover:to-green-500 rounded-lg shadow-md hover:shadow-lg transition-all transform active:scale-95 disabled:opacity-50"
             >
               <Download className={`w-4 h-4 ${isGeneratingPDF ? 'animate-bounce' : ''}`} />
-              <span>{isGeneratingPDF ? 'Generando PDF...' : 'Descargar PDF'}</span>
+              <span>{isGeneratingPDF ? 'Guardando PDF...' : 'Descargar PDF'}</span>
             </button>
           </div>
         </div>

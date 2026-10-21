@@ -8,7 +8,6 @@ import {
   Award, 
   Globe, 
   FolderGit2, 
-  Palette, 
   ChevronDown, 
   CheckCircle,
   Sliders
@@ -22,7 +21,6 @@ import SkillsForm from './SkillsForm';
 import CoursesForm from './CoursesForm';
 import LanguagesForm from './LanguagesForm';
 import ProjectsForm from './ProjectsForm';
-import ThemeCustomizer from './ThemeCustomizer';
 
 const SECTIONS = [
   { id: 'personal', title: 'Datos Personales y Contacto', icon: User },
@@ -33,7 +31,6 @@ const SECTIONS = [
   { id: 'courses', title: 'Cursos y Certificaciones', icon: Award },
   { id: 'languages', title: 'Idiomas', icon: Globe },
   { id: 'projects', title: 'Proyectos y Actividades', icon: FolderGit2 },
-  { id: 'theme', title: 'Diseño, Colores y Logo', icon: Palette },
 ];
 
 export default function FormEditor({ cvData, onChange }) {
@@ -46,7 +43,6 @@ export default function FormEditor({ cvData, onChange }) {
     courses: false,
     languages: false,
     projects: false,
-    theme: false,
   });
 
   const toggleSection = (id) => {
@@ -200,12 +196,6 @@ export default function FormEditor({ cvData, onChange }) {
                     <ProjectsForm 
                       items={cvData.projects} 
                       onChange={(val) => onChange({ ...cvData, projects: val })} 
-                    />
-                  )}
-                  {section.id === 'theme' && (
-                    <ThemeCustomizer 
-                      customization={cvData.customization} 
-                      onChange={(val) => onChange({ ...cvData, customization: val })} 
                     />
                   )}
                 </div>

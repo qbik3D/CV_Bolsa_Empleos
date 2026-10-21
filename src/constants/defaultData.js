@@ -152,6 +152,16 @@ export const emptyCVData = {
 };
 
 export const COLOR_THEMES = {
+  lfu: {
+    name: "Oficial LFU (Verde)",
+    primary: "#0d6b38",
+    primaryLight: "#dcfce7",
+    sidebarBg: "#f8fafc",
+    sidebarBorder: "#cbd5e1",
+    accent: "#aa1b22",
+    textDark: "#0f172a",
+    headingColor: "#0d6b38",
+  },
   navy: {
     name: "Azul UNLaM / Marino",
     primary: "#1e3a8a",

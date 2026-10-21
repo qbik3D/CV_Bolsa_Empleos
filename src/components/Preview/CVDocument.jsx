@@ -84,15 +84,15 @@ export default function CVDocument({ data }) {
             {/* Sello / Logo del Centro de Estudiantes */}
             {showCentroBadge && (
               <div 
-                className="p-2 rounded-lg border text-center transition bg-white"
+                className="p-3 rounded-xl border text-center transition bg-white shadow-2xs"
                 style={{ borderColor: theme.sidebarBorder }}
               >
                 <img 
-                  src={customLogoUrl || "./logo-centro.svg"} 
-                  alt="Logo Centro de Estudiantes" 
-                  className="max-h-12 max-w-full mx-auto object-contain"
+                  src={customLogoUrl || "./logo-centro.png"} 
+                  alt="Logo Centro de Estudiantes LFU" 
+                  className="max-h-20 max-w-full mx-auto object-contain drop-shadow-2xs"
                   onError={(e) => {
-                    // Fallback to text if svg fails to load
+                    // Fallback to text if image fails to load
                     e.currentTarget.style.display = 'none';
                     if (e.currentTarget.nextElementSibling) {
                       e.currentTarget.nextElementSibling.style.display = 'flex';

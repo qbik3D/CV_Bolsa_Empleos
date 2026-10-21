@@ -41,16 +41,18 @@ export default function Header({
         <div className="flex items-center justify-between h-16">
           {/* Brand & Title */}
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-700 to-indigo-500 flex items-center justify-center text-white shadow-md font-bold">
-              <GraduationCap className="w-6 h-6" />
-            </div>
+            <img 
+              src="./logo-centro.png" 
+              alt="Logo Centro de Estudiantes LFU" 
+              className="w-11 h-11 object-contain bg-white rounded-full p-0.5 shadow-md border border-slate-700" 
+            />
             <div>
               <div className="flex items-center space-x-2">
-                <span className="text-xs uppercase tracking-wider font-semibold text-blue-400 bg-blue-950/60 px-2 py-0.5 rounded border border-blue-800/60">
-                  Centro de Estudiantes
+                <span className="text-xs uppercase tracking-wider font-bold text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/60">
+                  LFU • Centro de Estudiantes
                 </span>
-                <span className="text-xs bg-emerald-950/80 text-emerald-400 px-2 py-0.5 rounded border border-emerald-800/60 font-medium">
-                  Expo Empleo
+                <span className="text-xs bg-rose-950/80 text-rose-300 px-2 py-0.5 rounded border border-rose-800/60 font-semibold">
+                  Expo Empleo UNLaM
                 </span>
               </div>
               <h1 className="text-base sm:text-lg font-bold text-white tracking-tight leading-tight">

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none">
+  <!-- Escudo / Icono -->
+  <rect x="10" y="10" width="60" height="60" rx="14" fill="#1e3a8a"/>
+  <path d="M40 22L24 31L40 40L56 31L40 22Z" fill="#ffffff"/>
+  <path d="M28 35.5V47.5C28 53.5 40 57.5 40 57.5C40 57.5 52 53.5 52 47.5V35.5L40 42.5L28 35.5Z" fill="#ffffff" fill-opacity="0.9"/>
+  <circle cx="40" cy="38" r="4" fill="#1e3a8a"/>
+
+  <!-- Texto Principal -->
+  <text x="82" y="34" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="16" font-weight="800" fill="#1e3a8a" letter-spacing="1">
+    CENTRO DE ESTUDIANTES
+  </text>
+  <text x="82" y="52" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="12" font-weight="700" fill="#059669" letter-spacing="2">
+    EXPO EMPLEO • UNLaM
+  </text>
+</svg>

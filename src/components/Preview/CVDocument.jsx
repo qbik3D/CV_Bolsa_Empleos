@@ -92,7 +92,7 @@ export default function CVDocument({ data }) {
                       CENTRO DE ESTUDIANTES
                     </p>
                     <p className="text-[8px] font-semibold text-slate-500 uppercase tracking-widest mt-0.5">
-                      EXPO EMPLEO
+                      BOLSA DE EMPLEO LFU
                     </p>
                   </div>
                 </div>
@@ -245,7 +245,7 @@ export default function CVDocument({ data }) {
 
           {/* Sidebar Bottom note */}
           <div className="pt-2 mt-2 border-t border-slate-200 text-center text-[8.5px] text-slate-400">
-            Formato oficial Expo Empleo UNLaM
+            Formato oficial Bolsa de Empleo LFU
           </div>
         </aside>
 
@@ -435,7 +435,7 @@ export default function CVDocument({ data }) {
 
           {/* Footer oficial de la página */}
           <footer className="pt-2 mt-2 border-t border-slate-200 flex items-center justify-between text-[8.5px] text-slate-400">
-            <span>Universidad Nacional de La Matanza • Expo Empleo</span>
+            <span>Universidad Nacional de La Matanza • Bolsa de Empleo LFU</span>
             <span>Centro de Estudiantes LFU</span>
           </footer>
         </main>

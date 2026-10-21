@@ -12,7 +12,7 @@ export const sampleCVData = {
     photoUrl: "", // Optional user uploaded base64 photo
     showPhoto: true,
   },
-  summary: "Estudiante de 3er año de Ingeniería en Informática en la Universidad Nacional de La Matanza (UNLaM), con sólida base en estructuras de datos, desarrollo frontend (React, JavaScript) y bases de datos SQL. Proactiva, con marcado interés en la resolución de problemas y el trabajo colaborativo en equipos multidisciplinarios. Busco incorporarme a un equipo dinámico mediante una pasantía o posición Jr. en el marco de la Expo Empleo.",
+  summary: "Estudiante de 3er año de Ingeniería en Informática en la Universidad Nacional de La Matanza (UNLaM), con sólida base en estructuras de datos, desarrollo frontend (React, JavaScript) y bases de datos SQL. Proactiva, con marcado interés en la resolución de problemas y el trabajo colaborativo en equipos multidisciplinarios. Busco incorporarme a un equipo dinámico mediante una pasantía o posición Jr. en el marco de la Bolsa de Empleo LFU.",
   education: [
     {
       id: "edu-1",

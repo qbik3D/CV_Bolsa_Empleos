@@ -35,9 +35,9 @@ export default function PreviewPanel({
   const handleResetZoom = () => setZoom(getOptimalZoom());
 
   return (
-    <div className="flex flex-col h-full print:block print:p-0 print:m-0">
+    <div className="flex flex-col h-full lg:min-h-0 print:block print:p-0 print:m-0">
       {/* Top toolbar inside preview (strictly hidden when printing) */}
-      <div className="no-print print:hidden preview-toolbar bg-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-t-xl border border-b-0 border-slate-200 flex items-center justify-between shadow-2xs">
+      <div className="no-print print:hidden preview-toolbar bg-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-t-xl border border-b-0 border-slate-200 flex items-center justify-between shadow-2xs shrink-0">
         <div className="flex items-center space-x-1.5 sm:space-x-2">
           <span className="text-xs font-bold text-slate-700">Vista Previa A4</span>
           <span className="hidden sm:inline-block text-[11px] text-slate-400">• Modelo Oficial Expo Empleo</span>
@@ -73,10 +73,10 @@ export default function PreviewPanel({
         </div>
       </div>
 
-      {/* Scrollable Document Area */}
+      {/* Scrollable Document Area (Independent scroll pane on PC) */}
       <div 
         id="cv-preview-wrapper"
-        className="flex-1 bg-slate-300/80 p-2 sm:p-6 overflow-auto rounded-b-xl border border-slate-200 flex justify-center items-start shadow-inner min-h-[480px] print:p-0 print:m-0 print:bg-white print:border-none print:shadow-none print:overflow-visible print:block"
+        className="flex-1 bg-slate-300/80 p-2 sm:p-6 overflow-y-auto overflow-x-auto rounded-b-xl border border-slate-200 flex justify-center items-start shadow-inner min-h-[480px] lg:min-h-0 print:p-0 print:m-0 print:bg-white print:border-none print:shadow-none print:overflow-visible print:block"
       >
         <div 
           id="cv-zoom-container"

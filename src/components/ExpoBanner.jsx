@@ -16,7 +16,7 @@ export default function ExpoBanner() {
           </div>
           <div>
             <p className="font-medium text-slate-100">
-              <span className="font-bold text-amber-300">¡Preparate para la Expo Empleo!</span> Este modelo oficial del Centro de Estudiantes está optimizado para reclutadores de empresas y pasantías.
+              <span className="font-bold text-amber-300">¡Bolsa de Empleo LFU!</span> Este modelo oficial del Centro de Estudiantes está optimizado para reclutadores de empresas y pasantías.
             </p>
             {showTips && (
               <div className="mt-2.5 pt-2.5 border-t border-blue-800/60 grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-slate-300">

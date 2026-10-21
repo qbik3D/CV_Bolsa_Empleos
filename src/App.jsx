@@ -99,9 +99,9 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-100 print:bg-white">
+    <div className="min-h-screen lg:h-screen lg:overflow-hidden flex flex-col bg-slate-100 print:bg-white print:h-auto print:overflow-visible">
       {/* Top Header (Hidden on print) */}
-      <div className="no-print print:hidden">
+      <div className="no-print print:hidden shrink-0">
         <Header
           onLoadSample={handleLoadSample}
           onReset={handleReset}
@@ -116,17 +116,17 @@ export default function App() {
       </div>
 
       {/* Expo Empleo Banner with tips (Hidden on print) */}
-      <div className="no-print print:hidden">
+      <div className="no-print print:hidden shrink-0">
         <ExpoBanner />
       </div>
 
       {/* Main Workspace */}
-      <main className="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-6 lg:p-8 pb-28 lg:pb-8 print:p-0 print:m-0 print:max-w-none">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start print:block print:p-0">
+      <main className="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-4 lg:p-6 pb-28 lg:pb-6 lg:overflow-hidden flex flex-col min-h-0 print:p-0 print:m-0 print:max-w-none print:overflow-visible">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start lg:flex-1 lg:h-full lg:min-h-0 print:block print:p-0">
           
-          {/* Left: Form Editor (Strictly hidden during print/PDF export) */}
-          <div className={`lg:col-span-5 no-print print:hidden form-editor-container ${activeTab === 'form' ? 'block' : 'hidden lg:block'}`}>
-            <div className="flex items-center justify-between mb-3 px-1">
+          {/* Left: Form Editor (Independent smooth scroll on desktop) */}
+          <div className={`lg:col-span-5 no-print print:hidden form-editor-container lg:h-full lg:overflow-y-auto lg:pr-3 lg:pb-12 ${activeTab === 'form' ? 'block' : 'hidden lg:block'}`}>
+            <div className="flex items-center justify-between mb-3 px-1 sticky top-0 bg-slate-100/95 backdrop-blur-xs py-1 z-10">
               <h2 className="text-sm font-bold text-slate-800 flex items-center space-x-1.5">
                 <FileText className="w-4 h-4 text-emerald-700" />
                 <span>Completar Información</span>
@@ -143,8 +143,8 @@ export default function App() {
             />
           </div>
 
-          {/* Right: Live A4 Preview (Sole element visible during print) */}
-          <div className={`lg:col-span-7 sticky top-20 print:static print:w-full print:p-0 print:m-0 preview-container ${activeTab === 'preview' ? 'block' : 'hidden lg:block'}`}>
+          {/* Right: Live A4 Preview (Independent smooth scroll on desktop) */}
+          <div className={`lg:col-span-7 lg:h-full lg:flex lg:flex-col lg:min-h-0 print:static print:w-full print:p-0 print:m-0 preview-container ${activeTab === 'preview' ? 'block' : 'hidden lg:block'}`}>
             <PreviewPanel
               cvData={cvData}
               onDownloadPDF={handleDownloadPDF}

@@ -50,7 +50,7 @@ export default function Header({
                   LFU • Centro de Estudiantes
                 </span>
                 <span className="text-[11px] bg-rose-950/80 text-rose-300 px-2 py-0.5 rounded border border-rose-800/60 font-semibold">
-                  Expo Empleo UNLaM
+                  Bolsa de Empleo LFU
                 </span>
               </div>
               

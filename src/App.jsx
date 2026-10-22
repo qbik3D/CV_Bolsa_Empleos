@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
-import ExpoBanner from './components/ExpoBanner';
 import FormEditor from './components/FormEditor/FormEditor';
 import PreviewPanel from './components/Preview/PreviewPanel';
 import { sampleCVData, emptyCVData } from './constants/defaultData';
@@ -113,11 +112,6 @@ export default function App() {
           onImportJSON={handleImportJSON}
           isGeneratingPDF={isGeneratingPDF}
         />
-      </div>
-
-      {/* Expo Empleo Banner with tips (Hidden on print) */}
-      <div className="no-print print:hidden shrink-0">
-        <ExpoBanner />
       </div>
 
       {/* Main Workspace */}

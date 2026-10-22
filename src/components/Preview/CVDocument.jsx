@@ -63,43 +63,7 @@ export default function CVDocument({ data }) {
           }}
         >
           <div className="space-y-4">
-            {/* Sello / Logo del Centro de Estudiantes (Arriba de la foto - Tamaño Ampliado) */}
-            {showCentroBadge && (
-              <div 
-                className="p-3 rounded-2xl border text-center transition bg-white shadow-xs"
-                style={{ borderColor: theme.sidebarBorder }}
-              >
-                <img 
-                  src={customLogoUrl || "./logo-centro.png"} 
-                  alt="Logo Centro de Estudiantes LFU" 
-                  className="max-h-36 w-full max-w-[170px] mx-auto object-contain drop-shadow-xs"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                    if (e.currentTarget.nextElementSibling) {
-                      e.currentTarget.nextElementSibling.style.display = 'flex';
-                    }
-                  }}
-                />
-                <div className="hidden items-center justify-center space-x-1.5 py-1">
-                  <div 
-                    className="w-6 h-6 rounded-md flex items-center justify-center text-white font-black text-xs shrink-0"
-                    style={{ backgroundColor: theme.primary }}
-                  >
-                    <Shield className="w-3.5 h-3.5" />
-                  </div>
-                  <div className="text-left">
-                    <p className="text-[9px] font-black tracking-wider uppercase leading-none" style={{ color: theme.primary }}>
-                      CENTRO DE ESTUDIANTES
-                    </p>
-                    <p className="text-[8px] font-semibold text-slate-500 uppercase tracking-widest mt-0.5">
-                      BOLSA DE EMPLEO LFU
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Foto de Perfil (Debajo del logo) */}
+            {/* Foto de Perfil */}
             {showPhoto && (
               <div className="flex flex-col items-center text-center">
                 <div 
@@ -243,9 +207,47 @@ export default function CVDocument({ data }) {
             )}
           </div>
 
-          {/* Sidebar Bottom note */}
-          <div className="pt-2 mt-2 border-t border-slate-200 text-center text-[8.5px] text-slate-400">
-            Formato oficial Bolsa de Empleo LFU
+          {/* Sello / Logo del Centro de Estudiantes (Al final del panel izquierdo, luego de idiomas) */}
+          <div className="pt-3 space-y-2">
+            {showCentroBadge && (
+              <div 
+                className="p-3 rounded-2xl border text-center transition bg-white shadow-xs"
+                style={{ borderColor: theme.sidebarBorder }}
+              >
+                <img 
+                  src={customLogoUrl || "./logo-centro.png"} 
+                  alt="Logo Centro de Estudiantes LFU" 
+                  className="max-h-32 w-full max-w-[160px] mx-auto object-contain drop-shadow-xs"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    if (e.currentTarget.nextElementSibling) {
+                      e.currentTarget.nextElementSibling.style.display = 'flex';
+                    }
+                  }}
+                />
+                <div className="hidden items-center justify-center space-x-1.5 py-1">
+                  <div 
+                    className="w-6 h-6 rounded-md flex items-center justify-center text-white font-black text-xs shrink-0"
+                    style={{ backgroundColor: theme.primary }}
+                  >
+                    <Shield className="w-3.5 h-3.5" />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-[9px] font-black tracking-wider uppercase leading-none" style={{ color: theme.primary }}>
+                      CENTRO DE ESTUDIANTES
+                    </p>
+                    <p className="text-[8px] font-semibold text-slate-500 uppercase tracking-widest mt-0.5">
+                      BOLSA DE EMPLEO LFU
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Sidebar Bottom note */}
+            <div className="pt-2 border-t border-slate-200 text-center text-[8.5px] text-slate-400">
+              Formato oficial Bolsa de Empleo LFU
+            </div>
           </div>
         </aside>
 
